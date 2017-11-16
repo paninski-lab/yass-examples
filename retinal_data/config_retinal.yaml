@@ -1,0 +1,42 @@
+# Sample configuration file, for a complete reference see
+# examples/config_sample_complete.yaml
+
+data:
+  root_folder: data/
+  recordings: data.bin
+  geometry: 512coords.txt
+
+resources:
+  max_memory: 1000000000
+
+recordings:
+  dtype: int16
+  sampling_rate: 20000
+  n_channels: 512
+  spatial_radius: 70
+  spike_size_ms: 1.5
+
+preprocess:
+  filter: True
+  templates_partial_data: 1
+  whiten_batchwise: False
+
+spikes:
+  detection: nn
+  temporal_features: 3
+
+deconvolution:
+  rank: 3
+  threshold: 4
+  lam: 20
+
+neural_network_detector:
+  filename: $ROOT_FOLDER/nn_model/detect_nn1.ckpt
+  threshold_spike: 0.5
+
+neural_network_triage:
+  filename: $ROOT_FOLDER/nn_model/triage_nn1.ckpt
+  threshold_collision: 0.9
+
+neural_network_autoencoder:
+  filename: $ROOT_FOLDER/nn_model/ae_nn1.ckpt
