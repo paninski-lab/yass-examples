@@ -1,5 +1,7 @@
-
 # coding: utf-8
+
+# See notebook:
+# https://github.com/paninski-lab/yass-examples/blob/master/batch/multi_channel_apply_disk.ipynb
 
 """
 Applying transformations to large files in batches:

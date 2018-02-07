@@ -3,12 +3,13 @@
 """
 Clean .py file generate by jupyter nbconvert
 """
+from pathlib import Path
 from functools import reduce
 import sys
 
 
 def main():
-    path_to_file = sys.argv[1]
+    path_to_file = Path(sys.argv[1])
 
     with open(path_to_file) as f:
         lines = f.readlines()
@@ -17,12 +18,23 @@ def main():
     extra = [n for n, line in enumerate(lines) if line.startswith('# In')]
 
     # remove extra line + the two subsequent ones, also remove last line,
-    # seems like jupyter adds two empty lines in the end
+    # seems like jupyter adds two empty lines in the end and first line
+    # (empty)
     to_remove = [item for sublist in [[e, e+1, e+2] for e in extra]
-                 for item in sublist] + [len(lines) - 1]
+                 for item in sublist] + [len(lines) - 1, 0]
 
     # get only clean lines
     clean_lines = [l for n, l in enumerate(lines) if n not in to_remove]
+
+    # add one line with the path to the notebook
+    filename = path_to_file.parts[-1].replace('.py', '.ipynb')
+    relative = path_to_file.parts[-2] + '/' + filename
+    path = 'https://github.com/paninski-lab/yass-examples/blob/master/'
+    url = path + relative + '\n'
+    notebook_lines = ['\n', '# See notebook:\n', '# ' + url]
+
+    clean_lines = [clean_lines[0]] + notebook_lines + clean_lines[1:]
+
     clean_file = reduce(lambda x, y: x+y, clean_lines)
 
     with open(path_to_file, 'w') as f:
