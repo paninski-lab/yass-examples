@@ -9,7 +9,7 @@ import sys
 
 
 def main():
-    path_to_file = Path(sys.argv[1])
+    path_to_file = sys.argv[1]
 
     with open(path_to_file) as f:
         lines = f.readlines()
@@ -27,8 +27,8 @@ def main():
     clean_lines = [l for n, l in enumerate(lines) if n not in to_remove]
 
     # add one line with the path to the notebook
-    filename = path_to_file.parts[-1].replace('.py', '.ipynb')
-    relative = path_to_file.parts[-2] + '/' + filename
+    filename = Path(path_to_file).parts[-1].replace('.py', '.ipynb')
+    relative = Path(path_to_file).parts[-2] + '/' + filename
     path = 'https://github.com/paninski-lab/yass-examples/blob/master/'
     url = path + relative + '\n'
     notebook_lines = ['\n', '# See notebook:\n', '# ' + url]
