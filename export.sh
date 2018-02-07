@@ -1,5 +1,5 @@
 # script to export examples to include them in the main repo
-YASS_REPO_EXAMPLES=../yass/examples
+YASS_REPO_EXAMPLES=../yass/examples/
 
 # convert notebooks to python files
 echo 'Converting notebooks to py files...'
@@ -11,4 +11,4 @@ for i in source/batch/*.py; do ./clean "$i"; done
 
 # move folder to the main repo
 # rm -rf ~/Desktop/test
-cp -vr source $YASS_REPO_EXAMPLES
+cp -vr source/* $YASS_REPO_EXAMPLES
