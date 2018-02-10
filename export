@@ -12,6 +12,7 @@ echo 'Cleaning py files...'
 for i in source/batch/*.py; do ./clean "$i"; done
 
 # flake 8
+echo 'Running flake 8...'
 flake8 source/
 
 # move folder to the main repo
