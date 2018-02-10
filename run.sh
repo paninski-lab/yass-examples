@@ -1,1 +1,0 @@
-# script to run all the examples
