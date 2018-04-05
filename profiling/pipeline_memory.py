@@ -9,6 +9,10 @@ https://github.com/pythonprofilers/memory_profiler
 Run with:
 
 mprof run pipeline_memory.py PATH_TO_CONFIG_FILE
+
+Plot results:
+
+mprof plot
 """
 import logging
 import argparse

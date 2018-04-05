@@ -18,18 +18,6 @@ Docs:
 python pipeline_memory.py --help
 ```
 
-Execution:
-
-```shell
-mprof run pipeline_memory.py PATH_TO_CONFIG_FILE
-```
-
-Once it's done you can plot the results:
-
-```shell
-mprof plot
-```
-
 [See this for details](https://github.com/pythonprofilers/memory_profiler)
 
 
@@ -39,4 +27,8 @@ WIP
 
 ## CPU profiler
 
-WIP
+Docs:
+
+```shell
+python pipeline_cpu.py --help
+```
