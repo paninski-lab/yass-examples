@@ -7,7 +7,7 @@ https://github.com/pythonprofilers/memory_profiler
 
 Run with:
 
-mprof run detect_memory.py PATH_TO_CONFIG_FILE
+mprof run cluster_memory.py PATH_TO_CONFIG_FILE
 
 Plot results:
 
@@ -19,7 +19,7 @@ import argparse
 from datetime import datetime
 from memory_profiler import profile
 import yass
-from yass import detect
+from yass import cluster
 
 
 if __name__ == '__main__':
@@ -52,19 +52,11 @@ if __name__ == '__main__':
 
     DIRECTORY = Path(CONFIG.data.root_folder, 'profiling')
 
-    standarized_path = str(DIRECTORY / 'standarized.bin')
-    standarized_params = str(DIRECTORY / 'standarized.yaml')
-    channel_index = str(DIRECTORY / 'channel_index.npy')
-    whiten_filter = str(DIRECTORY / 'whitening.npy')
+    scores = str(DIRECTORY / 'scores.npy')
+    spike_index = str(DIRECTORY / 'spike_index_clear.yaml')
 
     # detection
-    profile(detect.run)(standarized_path,
-                        standarized_params,
-                        channel_index,
-                        whiten_filter,
-                        output_directory='profiling',
-                        if_file_exists='overwrite',
-                        save_partial_results=True)
+    profile(cluster.run)(scores, spike_index)
 
     logger.info('Detection finished at second: %.2f',
                 (datetime.now() - start).total_seconds())
