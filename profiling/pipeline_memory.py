@@ -1,6 +1,5 @@
 """
-Memory profiling for the pipeline, looks for a config.yaml file in the
-same folder.
+Memory profiling for the pipeline
 
 See this for usage:
 
