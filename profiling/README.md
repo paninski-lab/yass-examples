@@ -23,14 +23,33 @@ python pipeline_memory.py --help
 [See this for details](https://github.com/pythonprofilers/memory_profiler)
 
 
-### Profiling preprocessor line by line
+### Profiling single steps line by line
+
+Docs for preprocess step:
+
+```shell
+mprof run preprocess_memory.py --help
+```
+
+Docs for detect step:
+
+```shell
+mprof run detect_memory.py --help
+```
+
 
 WIP
 
 ## CPU profiler
+
+### Profiling the entire pipeline
 
 Docs:
 
 ```shell
 python pipeline_cpu.py --help
 ```
+
+### Profiling single steps line by line
+
+WIP
