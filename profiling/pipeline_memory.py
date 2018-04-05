@@ -8,7 +8,7 @@ https://github.com/pythonprofilers/memory_profiler
 
 Run with:
 
-mprof run pipeline.py PATH_TO_CONFIG_FILE
+mprof run pipeline_memory.py PATH_TO_CONFIG_FILE
 """
 import logging
 import argparse
