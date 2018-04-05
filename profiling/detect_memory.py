@@ -45,7 +45,7 @@ if __name__ == '__main__':
     # set yass configuration parameters
     yass.set_config(args.config)
 
-    CONFIG = read_config()
+    CONFIG = yass.read_config()
 
     logger.info('Detection started at second: %.2f',
                 (datetime.now() - start).total_seconds())
@@ -54,6 +54,7 @@ if __name__ == '__main__':
 
     standarized_path = str(DIRECTORY / 'standarized.bin')
     standarized_params = str(DIRECTORY / 'standarized.yaml')
+    channel_index = str(DIRECTORY / 'channel_index.npy')
     whiten_filter = str(DIRECTORY / 'whitening.npy')
 
     # detection
