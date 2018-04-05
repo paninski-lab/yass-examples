@@ -1,5 +1,5 @@
 """
-Memory profiling (line by line) for the preprocessing step
+Memory profiling (line by line) for the detection step
 
 See this for usage:
 
@@ -7,18 +7,19 @@ https://github.com/pythonprofilers/memory_profiler
 
 Run with:
 
-mprof run preprocess_memory.py PATH_TO_CONFIG_FILE
+mprof run detect_memory.py PATH_TO_CONFIG_FILE
 
 Plot results:
 
 mprof plot
 """
+from pathlib import Path
 import logging
 import argparse
 from datetime import datetime
 from memory_profiler import profile
 import yass
-from yass import preprocess
+from yass import detect
 
 
 if __name__ == '__main__':
@@ -44,13 +45,24 @@ if __name__ == '__main__':
     # set yass configuration parameters
     yass.set_config(args.config)
 
-    logger.info('Preprocessing started at second: %.2f',
+    CONFIG = read_config()
+
+    logger.info('Detection started at second: %.2f',
                 (datetime.now() - start).total_seconds())
 
-    # preprocessing
-    (standarized_path, standarized_params, channel_index,
-     whiten_filter) = profile(preprocess.run)(output_directory='profiling',
-                                              if_file_exists='overwrite')
+    DIRECTORY = Path(CONFIG.data.root_folder, 'profiling')
 
-    logger.info('Preprocessing finished at second: %.2f',
+    standarized_path = str(DIRECTORY / 'standarized.bin')
+    standarized_params = str(DIRECTORY / 'standarized.yaml')
+    whiten_filter = str(DIRECTORY / 'whitening.npy')
+
+    # detection
+    profile(detect.run)(standarized_path,
+                        standarized_params,
+                        channel_index,
+                        whiten_filter,
+                        output_directory='profiling',
+                        if_file_exists='overwrite')
+
+    logger.info('Detection finished at second: %.2f',
                 (datetime.now() - start).total_seconds())

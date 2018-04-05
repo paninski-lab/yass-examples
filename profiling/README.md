@@ -1,5 +1,7 @@
 # Profiling code
 
+Note: Only compatible with Python 3.
+
 Install requirements first:
 
 ```shell
