@@ -11,7 +11,7 @@ pip install -r requirements.txt
 ## Generating results from all steps
 
 To be able to run steps separately, all the results from previous steps
-needs to be generated, run the following script to do so.
+need to be generated, run the following script to do so:
 
 ```shell
 python memory_pipeline.py PATH_TO_CONFIG --logger INFO
@@ -30,11 +30,9 @@ mprof run memory_STEP.py PATH_TO_CONFIG
 ```
 
 Where STEP is `preprocess`, `detect`, `cluster`, `templates`, `decovolution`
-(profile one step in the pipeline line by line). You need to run
-previous steps to generate the results. `pipeline` is also valid, it runs
-the complete pipeline.
+(profile one step in the pipeline line by line). `pipeline` is also valid, it runs the complete pipeline.
 
-Run any of the scripts with the `--help` option to see options available.
+Run any of the scripts with the `--help` option to see more details.
 
 Plot results:
 
