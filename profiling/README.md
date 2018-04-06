@@ -60,7 +60,7 @@ python -m line_profiler cpu_STEP.py.lprof
 There is a script to profile eveything (takes a while to run):
 
 ```
-./profile PATH_TO_CONFIG PATH_TO_OUTPUT >> profile.log
+./profile PATH_TO_CONFIG PATH_TO_OUTPUT > profile.log
 ```
 
 This will generate `*.dat` (results from memory profiling), `*.png` (plots from memory profiling),  `.lprof` (results from cpu profiling), `.txt`
