@@ -1,10 +1,13 @@
+"""
+Settings for all scripts
+"""
 import yass
 import logging
 import argparse
 
 
 def run():
-    parser = argparse.ArgumentParser(description=__doc__)
+    parser = argparse.ArgumentParser()
     parser.add_argument("config", type=str,
                         help="Path to config file")
     parser.add_argument("-l", "--logger", type=str,

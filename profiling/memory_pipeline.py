@@ -1,18 +1,3 @@
-"""
-Memory profiling for the pipeline
-
-See this for usage:
-
-https://github.com/pythonprofilers/memory_profiler
-
-Run with:
-
-mprof run pipeline_memory.py PATH_TO_CONFIG_FILE
-
-Plot results:
-
-mprof plot
-"""
 import logging
 from datetime import datetime
 from memory_profiler import profile
@@ -22,8 +7,6 @@ import settings
 
 @profile
 def main():
-    """Profiling memory in YASS pipeline
-    """
     settings.run()
     start = datetime.now()
     logger = logging.getLogger(__name__)

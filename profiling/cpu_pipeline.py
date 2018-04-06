@@ -1,18 +1,3 @@
-"""
-CPU profiling using line_profiler
-
-To run:
-
-kernprof -l pipeline_cpu.py
-
-Inspect results:
-
-python -m line_profiler pipeline_cpu.py.lprof
-
-More info:
-
-https://github.com/rkern/line_profiler
-"""
 import logging
 from datetime import datetime
 from yass import preprocess, detect, cluster, templates, deconvolute
@@ -21,8 +6,6 @@ import settings
 
 @profile
 def main():
-    """Profiling CPU in YASS pipeline
-    """
     settings.run()
     start = datetime.now()
     logger = logging.getLogger(__name__)

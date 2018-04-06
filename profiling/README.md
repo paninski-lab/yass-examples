@@ -10,46 +10,43 @@ pip install -r requirements.txt
 
 ## Memory
 
-### Profiling the entire pipeline
+Run with:
 
-This first script profiles every step in the pipeline
-
-Docs:
-
-```shell
-python pipeline_memory.py --help
+```
+mprof run memory_STEP.py PATH_TO_CONFIG_FILE
 ```
 
-[See this for details](https://github.com/pythonprofilers/memory_profiler)
+Where STEP is `preprocess`, `detect`, `cluster`, `templates`, `decovolution`
+(profile one step in the pipeline line by line). You need to run
+previous steps to generate the results. `pipeline` is also valid, it runs
+the complete pipeline.
 
+Run any of the scripts with the `--help` option to see options available.
 
-### Profiling single steps line by line
+Plot results:
 
-Docs for preprocess step:
-
-```shell
-mprof run preprocess_memory.py --help
 ```
-
-Docs for detect step:
-
-```shell
-mprof run detect_memory.py --help
+mprof plots
 ```
-
-
-WIP
 
 ## CPU profiler
 
 ### Profiling the entire pipeline
 
-Docs:
+Run with:
 
 ```shell
-python pipeline_cpu.py --help
+kernprof -l cpu_STEP.py
 ```
 
-### Profiling single steps line by line
+Inspect results:
 
-WIP
+```shell
+python -m line_profiler cpu_pipeline.py.lprof
+```
+
+## Resources
+
+* [Memory profiling library](https://github.com/pythonprofilers/memory_profiler)
+* [CPU profiling library](https://github.com/rkern/line_profiler)
+
