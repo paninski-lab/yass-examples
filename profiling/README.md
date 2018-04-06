@@ -13,7 +13,7 @@ pip install -r requirements.txt
 Run with:
 
 ```
-mprof run memory_STEP.py PATH_TO_CONFIG_FILE
+mprof run memory_STEP.py PATH_TO_CONFIG
 ```
 
 Where STEP is `preprocess`, `detect`, `cluster`, `templates`, `decovolution`
@@ -36,13 +36,13 @@ mprof plots
 Run with:
 
 ```shell
-kernprof -l cpu_STEP.py
+kernprof -l cpu_STEP.py PATH_TO_CONFIG
 ```
 
 Inspect results:
 
 ```shell
-python -m line_profiler cpu_pipeline.py.lprof
+python -m line_profiler cpu_STEP.py.lprof
 ```
 
 ## Resources
