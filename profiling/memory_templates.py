@@ -21,7 +21,6 @@ if __name__ == '__main__':
 
     spike_train_cluster = str(DIRECTORY / 'spike_train_cluster.npy')
 
-    # detection
     profile(templates.run)(spike_train_cluster,
                            output_directory='profiling',
                            if_file_exists='overwrite',

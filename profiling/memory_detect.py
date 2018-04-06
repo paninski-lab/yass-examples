@@ -24,7 +24,6 @@ if __name__ == '__main__':
     channel_index = str(DIRECTORY / 'channel_index.npy')
     whiten_filter = str(DIRECTORY / 'whitening.npy')
 
-    # detection
     profile(detect.run)(standarized_path,
                         standarized_params,
                         channel_index,

@@ -22,7 +22,6 @@ if __name__ == '__main__':
     spike_index_all = str(DIRECTORY / 'spike_index_all.npy')
     templates = str(DIRECTORY / 'templates.npy')
 
-    # detection
     profile(deconvolute.run)(spike_index_all, templates,
                              output_directory='profiling')
 

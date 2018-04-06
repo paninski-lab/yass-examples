@@ -21,7 +21,6 @@ if __name__ == '__main__':
     scores_clear = str(DIRECTORY / 'scores_clear.npy')
     spike_index_clear = str(DIRECTORY / 'spike_index_clear.npy')
 
-    # detection
     profile(cluster.run)(scores_clear, spike_index_clear,
                          output_directory='profiling',
                          if_file_exists='overwrite',

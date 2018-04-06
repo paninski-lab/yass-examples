@@ -11,7 +11,6 @@ if __name__ == '__main__':
     logger.info('Preprocessing started at second: %.2f',
                 (datetime.now() - start).total_seconds())
 
-    # preprocessing
     (standarized_path, standarized_params, channel_index,
      whiten_filter) = profile(preprocess.run)(output_directory='profiling',
                                               if_file_exists='overwrite')
