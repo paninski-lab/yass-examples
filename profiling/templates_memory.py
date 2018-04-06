@@ -15,35 +15,19 @@ mprof plot
 """
 from pathlib import Path
 import logging
-import argparse
 from datetime import datetime
 from memory_profiler import profile
 import yass
 from yass import templates
+import settings
 
 
 if __name__ == '__main__':
     """Profiling memory in YASS pipeline
     """
+    settings.run()
     start = datetime.now()
-
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("config", type=str,
-                        help="Path to config file")
-    parser.add_argument("-l", "--logger", type=str,
-                        help="YASS logger level",
-                        default="WARNING")
-    args = parser.parse_args()
-
-    # configure logs from yass
-    logging.getLogger("yass").setLevel(args.logger)
-    # logs from this script
-    logging.basicConfig(level=logging.INFO)
-
     logger = logging.getLogger(__name__)
-
-    # set yass configuration parameters
-    yass.set_config(args.config)
 
     CONFIG = yass.read_config()
 

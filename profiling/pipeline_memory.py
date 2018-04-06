@@ -14,36 +14,19 @@ Plot results:
 mprof plot
 """
 import logging
-import argparse
 from datetime import datetime
 from memory_profiler import profile
-import yass
 from yass import preprocess, detect, cluster, templates, deconvolute
+import settings
 
 
 @profile
 def main():
     """Profiling memory in YASS pipeline
     """
+    settings.run()
     start = datetime.now()
-
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("config", type=str,
-                        help="Path to config file")
-    parser.add_argument("-l", "--logger", type=str,
-                        help="YASS logger level",
-                        default="WARNING")
-    args = parser.parse_args()
-
-    # configure logs from yass
-    logging.getLogger("yass").setLevel(args.logger)
-    # logs from this script
-    logging.basicConfig(level=logging.INFO)
-
     logger = logging.getLogger(__name__)
-
-    # set yass configuration parameters
-    yass.set_config(args.config)
 
     logger.info('Preprocessing started at second: %.2f',
                 (datetime.now() - start).total_seconds())

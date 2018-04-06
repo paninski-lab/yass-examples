@@ -1,24 +1,22 @@
 """
-Memory profiling (line by line) for the preprocessing step
+CPU profiling using line_profiler
 
-See this for usage:
+To run:
 
-https://github.com/pythonprofilers/memory_profiler
+kernprof -l preprocess_cpu.py
 
-Run with:
+Inspect results:
 
-mprof run preprocess_memory.py PATH_TO_CONFIG_FILE
+python -m line_profiler preprocess_cpu.py.lprof
 
-Plot results:
+More info:
 
-mprof plot
+https://github.com/rkern/line_profiler
 """
 import logging
 from datetime import datetime
-from memory_profiler import profile
 from yass import preprocess
 import settings
-
 
 if __name__ == '__main__':
     """Profiling memory in YASS pipeline

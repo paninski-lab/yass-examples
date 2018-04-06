@@ -3,46 +3,29 @@ CPU profiling using line_profiler
 
 To run:
 
-kernprof -l profile_cpu.py
+kernprof -l pipeline_cpu.py
 
 Inspect results:
 
-python -m line_profiler profile_cpu.py.lprof
+python -m line_profiler pipeline_cpu.py.lprof
 
 More info:
 
 https://github.com/rkern/line_profiler
 """
 import logging
-import argparse
 from datetime import datetime
-import yass
 from yass import preprocess, detect, cluster, templates, deconvolute
+import settings
 
 
 @profile
 def main():
     """Profiling CPU in YASS pipeline
     """
+    settings.run()
     start = datetime.now()
-
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("config", type=str,
-                        help="Path to config file")
-    parser.add_argument("-l", "--logger", type=str,
-                        help="YASS logger level",
-                        default="WARNING")
-    args = parser.parse_args()
-
-    # configure logs from yass
-    logging.getLogger("yass").setLevel(args.logger)
-    # logs from this script
-    logging.basicConfig(level=logging.INFO)
-
     logger = logging.getLogger(__name__)
-
-    # set yass configuration parameters
-    yass.set_config(args.config)
 
     logger.info('Preprocessing started at second: %.2f',
                 (datetime.now() - start).total_seconds())
