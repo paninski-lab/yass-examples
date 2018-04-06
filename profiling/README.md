@@ -8,6 +8,19 @@ Install requirements first:
 pip install -r requirements.txt
 ```
 
+## Generating results from all steps
+
+To be able to run steps separately, all the results from previous steps
+needs to be generated, run the following script to do so.
+
+```shell
+python memory_pipeline.py PATH_TO_CONFIG --logger INFO
+```
+
+Note: this won't do memory profiling, it is just to generate the files.
+
+All results will be saved on `CONFIG.data.root_folder/profiling/`
+
 ## Memory
 
 Run with:
@@ -26,7 +39,7 @@ Run any of the scripts with the `--help` option to see options available.
 Plot results:
 
 ```
-mprof plots
+mprof plot
 ```
 
 ## CPU profiler

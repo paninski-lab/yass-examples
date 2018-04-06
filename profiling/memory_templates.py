@@ -21,10 +21,10 @@ if __name__ == '__main__':
 
     spike_train_cluster = str(DIRECTORY / 'spike_train_cluster.npy')
 
-    profile(templates.run)(spike_train_cluster,
-                           output_directory='profiling',
-                           if_file_exists='overwrite',
-                           save_results=True)
+    profile(templates.run.__wrapped__)(spike_train_cluster,
+                                       output_directory='profiling',
+                                       if_file_exists='overwrite',
+                                       save_results=True)
 
     logger.info('Templates finished at second: %.2f',
                 (datetime.now() - start).total_seconds())
