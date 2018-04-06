@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-PATH_TO_CONFIG = $1
-PATH_TO_OUTPUT = $1
+PATH_TO_CONFIG=$1
+PATH_TO_OUTPUT=$2
 
 function rename_dat {
     for f in mprofile_*.dat; do mv "$f" "$1"; done
