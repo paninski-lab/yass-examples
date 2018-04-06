@@ -1,5 +1,5 @@
 """
-Memory profiling (line by line) for the cluster step
+Memory profiling (line by line) for the templates step
 
 See this for usage:
 
@@ -7,7 +7,7 @@ https://github.com/pythonprofilers/memory_profiler
 
 Run with:
 
-mprof run cluster_memory.py PATH_TO_CONFIG_FILE
+mprof run cluster_templates.py PATH_TO_CONFIG_FILE
 
 Plot results:
 
@@ -19,7 +19,7 @@ import argparse
 from datetime import datetime
 from memory_profiler import profile
 import yass
-from yass import cluster
+from yass import templates
 
 
 if __name__ == '__main__':
@@ -47,19 +47,18 @@ if __name__ == '__main__':
 
     CONFIG = yass.read_config()
 
-    logger.info('Clustering started at second: %.2f',
+    logger.info('Templates started at second: %.2f',
                 (datetime.now() - start).total_seconds())
 
     DIRECTORY = Path(CONFIG.data.root_folder, 'profiling')
 
-    scores_clear = str(DIRECTORY / 'scores_clear.npy')
-    spike_index_clear = str(DIRECTORY / 'spike_index_clear.npy')
+    spike_train_cluster = str(DIRECTORY / 'spike_train_cluster.npy')
 
     # detection
-    profile(cluster.run)(scores_clear, spike_index_clear,
-                         output_directory='profiling',
-                         if_file_exists='overwrite',
-                         save_results=True)
+    profile(templates.run)(spike_train_cluster,
+                           output_directory='profiling',
+                           if_file_exists='overwrite',
+                           save_results=True)
 
-    logger.info('Clustering finished at second: %.2f',
+    logger.info('Templates finished at second: %.2f',
                 (datetime.now() - start).total_seconds())
