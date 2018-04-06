@@ -3,6 +3,10 @@ config.yaml
 *.lprof
 *.private.yaml
 
+# ./profile script results
+*.png
+cpu_*.txt
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

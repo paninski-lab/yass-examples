@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+
+PATH_TO_CONFIG = $1
+PATH_TO_OUTPUT = $1
+
+function rename_dat {
+    for f in mprofile_*.dat; do mv "$f" "$1"; done
+}
+
+function memory_script {
+    echo "**********Profiling memory in $1**********"
+    mprof run "memory_$1.py" $PATH_TO_CONFIG
+    rename_dat "memory_$1.dat"
+    mprof plot "memory_$1.dat" -o "memory_$1.png"
+}
+
+function cpu_script {
+    echo "**********Profiling CPU in $1**********"
+    kernprof -l "cpu_$1.py" $PATH_TO_CONFIG
+    python -m line_profiler "cpu_$1.py.lprof" > "cpu_$1.txt"
+}
+
+# remove previous profiling results
+rm -f *.dat *.lprof
+
+# Memory profiling
+memory_script pipeline
+memory_script preprocess
+memory_script detect
+memory_script cluster
+memory_script templates
+memory_script deconvolution
+
+
+# CPU profiling
+cpu_script pipeline
+cpu_script preprocess
+cpu_script detect
+cpu_script cluster
+cpu_script templates
+cpu_script deconvolution
+
+# Move files to output folder
+mkdir -p $PATH_TO_OUTPUT
+for f in *.dat; do mv "$f" "$PATH_TO_OUTPUT/$f"; done
+for f in *.lprof; do mv "$f" "$PATH_TO_OUTPUT/$f"; done
+for f in *.png; do mv "$f" "$PATH_TO_OUTPUT/$f"; done
+for f in cpu_*.txt; do mv "$f" "$PATH_TO_OUTPUT/$f"; done
+mv profile.log "$PATH_TO_OUTPUT/profile.log"

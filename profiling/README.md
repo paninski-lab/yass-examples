@@ -40,9 +40,7 @@ Plot results:
 mprof plot
 ```
 
-## CPU profiler
-
-### Profiling the entire pipeline
+## CPU
 
 Run with:
 
@@ -55,6 +53,18 @@ Inspect results:
 ```shell
 python -m line_profiler cpu_STEP.py.lprof
 ```
+
+
+## Profiling everything
+
+There is a script to profile eveything (takes a while to run):
+
+```
+./profile PATH_TO_CONFIG PATH_TO_OUTPUT >> profile.log
+```
+
+This will generate `*.dat` (results from memory profiling), `*.png` (plots from memory profiling),  `.lprof` (results from cpu profiling), `.txt`
+(cpu results in txt format) and a `profile.log` file in the `PATH_TO_OUTPUT`.
 
 ## Resources
 
