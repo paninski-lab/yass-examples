@@ -64,7 +64,7 @@ if __name__ == '__main__':
                         whiten_filter,
                         output_directory='profiling',
                         if_file_exists='overwrite',
-                        save_partial_results=True)
+                        save_results=True)
 
     logger.info('Detection finished at second: %.2f',
                 (datetime.now() - start).total_seconds())

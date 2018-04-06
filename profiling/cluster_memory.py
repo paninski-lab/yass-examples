@@ -47,16 +47,19 @@ if __name__ == '__main__':
 
     CONFIG = yass.read_config()
 
-    logger.info('Detection started at second: %.2f',
+    logger.info('Clustering started at second: %.2f',
                 (datetime.now() - start).total_seconds())
 
     DIRECTORY = Path(CONFIG.data.root_folder, 'profiling')
 
-    scores = str(DIRECTORY / 'scores.npy')
-    spike_index = str(DIRECTORY / 'spike_index_clear.yaml')
+    scores_clear = str(DIRECTORY / 'scores_clear.npy')
+    spike_index_clear = str(DIRECTORY / 'spike_index_clear.npy')
 
     # detection
-    profile(cluster.run)(scores, spike_index)
+    profile(cluster.run)(scores_clear, spike_index_clear,
+                         output_directory='profiling',
+                         if_file_exists='overwrite',
+                         save_results=True)
 
-    logger.info('Detection finished at second: %.2f',
+    logger.info('Clustering finished at second: %.2f',
                 (datetime.now() - start).total_seconds())
