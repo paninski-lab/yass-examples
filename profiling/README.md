@@ -1,34 +1,65 @@
 # Profiling code
 
+Note: Only compatible with Python 3.
+
 Install requirements first:
 
 ```shell
 pip install -r requirements.txt
 ```
 
-## Memory
+## Generating results from all steps
 
-### Profiling the entire pipeline
-
-This first script profiles every step in the pipeline
-
-Docs:
+To be able to run steps separately, all the results from previous steps
+needs to be generated, run the following script to do so.
 
 ```shell
-python pipeline_memory.py --help
+python memory_pipeline.py PATH_TO_CONFIG --logger INFO
 ```
 
-[See this for details](https://github.com/pythonprofilers/memory_profiler)
+Note: this won't do memory profiling, it is just to generate the files.
 
+All results will be saved on `CONFIG.data.root_folder/profiling/`
 
-### Profiling preprocessor line by line
+## Memory
 
-WIP
+Run with:
+
+```
+mprof run memory_STEP.py PATH_TO_CONFIG
+```
+
+Where STEP is `preprocess`, `detect`, `cluster`, `templates`, `decovolution`
+(profile one step in the pipeline line by line). You need to run
+previous steps to generate the results. `pipeline` is also valid, it runs
+the complete pipeline.
+
+Run any of the scripts with the `--help` option to see options available.
+
+Plot results:
+
+```
+mprof plot
+```
 
 ## CPU profiler
 
-Docs:
+### Profiling the entire pipeline
+
+Run with:
 
 ```shell
-python pipeline_cpu.py --help
+kernprof -l cpu_STEP.py PATH_TO_CONFIG
 ```
+
+Inspect results:
+
+```shell
+python -m line_profiler cpu_STEP.py.lprof
+```
+
+## Resources
+
+* [Memory profiling library](https://github.com/pythonprofilers/memory_profiler)
+* [CPU profiling library](https://github.com/rkern/line_profiler)
+
